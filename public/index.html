@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IziModal Test</title>
+  <style>
+    .open-modal, .modal-shadow{
+      display:inline-block;
+      width:20vw;
+    }
+    img{
+      max-width:100%;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/css/iziModal.min.css" integrity="sha512-8vr9VoQNQkkCCHGX4BSjg63nI5CI4B+nZ8SF2xy4FMOIyH/2MT0r55V276ypsBFAgmLIGXKtRhbbJueVyYZXjA==" crossorigin="anonymous" />
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+  <div class="group1">
+    <h1>Group1</h1>
+    <div class="open-modal" data-izimodal-group="group1" data-izimodal-loop="" data-izimodal-title="" data-izimodal-subtitle=""><img src="https://pbs.twimg.com/media/EUqtITAUcAA2zTz?format=jpg&name=medium" alt="cat"></div>
+    <div class="open-modal" data-izimodal-group="group1" data-izimodal-loop="" data-izimodal-title="" data-izimodal-subtitle=""><img src="https://pbs.twimg.com/media/EUqtITRUEAAy_g3?format=jpg&name=medium" alt="cat"></div>
+    <div class="open-modal" data-izimodal-group="group1" data-izimodal-loop="" data-izimodal-title="" data-izimodal-subtitle=""><img src="https://pbs.twimg.com/media/EUqtITvU4AAV95y?format=jpg&name=medium" alt="cat"></div>
+  </div>
+  <div class="group2">
+    <h1>Group2</h1>
+    <div class="open-modal" data-izimodal-group="group2" data-izimodal-loop="" data-izimodal-title="" data-izimodal-subtitle=""><img src="https://cms.hostelbookers.com/hbblog/wp-content/uploads/sites/3/2012/02/French-Cat.jpg" alt="cat"></div>
+    <div class="open-modal" data-izimodal-group="group2" data-izimodal-loop="" data-izimodal-title="" data-izimodal-subtitle=""><img src="https://cms.hostelbookers.com/hbblog/wp-content/uploads/sites/3/2012/02/page6.jpg" alt="cat"></div>
+    <div class="open-modal" data-izimodal-group="group2" data-izimodal-loop="" data-izimodal-title="" data-izimodal-subtitle=""><img src="https://cms.hostelbookers.com/hbblog/wp-content/uploads/sites/3/2012/02/46724914853492977.jpg" alt="cat"></div>
+  </div>
+  <div class="group3">
+    <h1>Group3</h1>
+    <div class="open-modal" data-izimodal-group="group3" data-izimodal-loop="" data-izimodal-title="" data-izimodal-subtitle=""><img src="https://cms.hostelbookers.com/hbblog/wp-content/uploads/sites/3/2012/02/Funny-Persian-Cats-e1329932930394.jpg" alt="cat"></div>
+    <div class="open-modal" data-izimodal-group="group3" data-izimodal-loop="" data-izimodal-title="" data-izimodal-subtitle=""><img src="https://cms.hostelbookers.com/hbblog/wp-content/uploads/sites/3/2012/02/kitten-in-a-bowtie.jpg" alt="cat"></div>
+    <div class="open-modal" data-izimodal-group="group3" data-izimodal-loop="" data-izimodal-title="" data-izimodal-subtitle=""><img src="https://cms.hostelbookers.com/hbblog/wp-content/uploads/sites/3/2012/02/shoreditch-cat.jpg" alt="cat"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js" integrity="sha512-8aOKv+WECF2OZvOoJWZQMx7+VYNxqokDKTGJqkEYlqpsSuKXoocijXQNip3oT4OEkFfafyluI6Bm6oWZjFXR0A==" crossorigin="anonymous"></script>
+  <script>
+    var modalMap = new Map()
+    $('.open-modal').each(function(ind, el){
+      var clone = $(el).clone().insertAfter(el).attr('class','modal-shadow').iziModal({
+        headerColor: '#26A69A', //ヘッダー部分の色
+        width: 400, //横幅
+        overlayColor: 'rgba(0, 0, 0, 0.5)', //モーダルの背景色
+        fullscreen: true, //全画面表示
+        transitionIn: 'fadeInUp', //表示される時のアニメーション
+        transitionOut: 'fadeOutDown' //非表示になる時のアニメーション
+        })
+      modalMap.set(el, clone)
+    })
+    $(function(){
+      $(document).on('click','.open-modal',true, function(ev){
+        ev.preventDefault()
+        modalMap.get(ev.currentTarget).iziModal('open')
+      })
+    })
+  </script>
+</body>
+</html>
