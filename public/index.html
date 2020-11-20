@@ -5,8 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IziModal Test</title>
   <style>
-    html,body{
-      overflow:hidden;
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+    body{
+      height:100vh;
+      overflow-y:scroll;
     }
     .open-modal{
       display:inline-block;
@@ -44,14 +50,14 @@
   <script>
     var modalMap = new Map()
     $('.open-modal').each(function(ind, el){
-      var clone = $(el).clone().insertAfter(el).attr('class','modal-shadow').iziModal({
+      var clone = $(el).clone().attr('class','modal-shadow').iziModal({
         headerColor: '#26A69A', //ヘッダー部分の色
-        width: '70vw', //横幅
+        width: '50vw', //横幅
         overlayColor: 'rgba(0, 0, 0, 0.5)', //モーダルの背景色
         fullscreen: true, //全画面表示
         transitionIn: 'fadeInUp', //表示される時のアニメーション
         transitionOut: 'fadeOutDown' //非表示になる時のアニメーション
-        })
+      })
       modalMap.set(el, clone)
     })
     $(function(){
