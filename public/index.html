@@ -48,9 +48,11 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js" integrity="sha512-8aOKv+WECF2OZvOoJWZQMx7+VYNxqokDKTGJqkEYlqpsSuKXoocijXQNip3oT4OEkFfafyluI6Bm6oWZjFXR0A==" crossorigin="anonymous"></script>
   <script>
+    //すべての.open-modal要素に対して
     $('.open-modal').each(function(ind, el){
+      //もと画像要素
       var org = $(el)
-      //もとの画像を複製して、別のクラスを設定、モーダル化する
+      //もとの画像を複製して、別のクラスを作成し、モーダル化する(変数cloneが複製した要素)
       var clone = org.clone().attr('class','modal-shadow').iziModal({
         headerColor: '#26A69A', //ヘッダー部分の色
         width: '50vw', //横幅
@@ -59,7 +61,7 @@
         transitionIn: 'fadeInUp', //表示される時のアニメーション
         transitionOut: 'fadeOutDown' //非表示になる時のアニメーション
       })
-      //もと画像をクリックしたときにモーダルを表示
+      //もと画像をクリックしたときにモーダル化した要素を表示
       org.on('click', true, function(ev){
         ev.preventDefault()
         clone.iziModal('open')
