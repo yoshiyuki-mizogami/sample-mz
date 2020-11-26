@@ -48,9 +48,10 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js" integrity="sha512-8aOKv+WECF2OZvOoJWZQMx7+VYNxqokDKTGJqkEYlqpsSuKXoocijXQNip3oT4OEkFfafyluI6Bm6oWZjFXR0A==" crossorigin="anonymous"></script>
   <script>
-    var modalMap = new Map()
     $('.open-modal').each(function(ind, el){
-      var clone = $(el).clone().attr('class','modal-shadow').iziModal({
+      var org = $(el)
+      //もとの画像を複製して、別のクラスを設定、モーダル化する
+      var clone = org.clone().attr('class','modal-shadow').iziModal({
         headerColor: '#26A69A', //ヘッダー部分の色
         width: '50vw', //横幅
         overlayColor: 'rgba(0, 0, 0, 0.5)', //モーダルの背景色
@@ -58,12 +59,10 @@
         transitionIn: 'fadeInUp', //表示される時のアニメーション
         transitionOut: 'fadeOutDown' //非表示になる時のアニメーション
       })
-      modalMap.set(el, clone)
-    })
-    $(function(){
-      $(document).on('click','.open-modal',true, function(ev){
+      //もと画像をクリックしたときにモーダルを表示
+      org.on('click', true, function(ev){
         ev.preventDefault()
-        modalMap.get(ev.currentTarget).iziModal('open')
+        clone.iziModal('open')
       })
     })
   </script>
